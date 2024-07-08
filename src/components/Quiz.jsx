@@ -6,7 +6,7 @@ import Summery from "./Summery";
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
 
-  const activeQuestionIndex =userAnswers.length
+  const activeQuestionIndex = userAnswers.length;
 
   const isQuizcomplted = activeQuestionIndex === QUESTIONS.length;
 
@@ -23,9 +23,7 @@ export default function Quiz() {
     handleSelectAnswer(null);
   }, [handleSelectAnswer]);
   if (isQuizcomplted) {
-    return (
-      <Summery userAnswers={userAnswers}  />
-    );
+    return <Summery userAnswers={userAnswers} />;
   }
 
   return (

@@ -1,12 +1,13 @@
+import { useState } from "react";
 import Header from "./components/Header";
-import Quiz from "./components/Quiz";
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
-        <Quiz />
+        <Home />
       </main>
     </>
   );

@@ -6,6 +6,7 @@ export default function Answers({
   answerState,
   onSelect,
 }) {
+  console.log(answers, "answers");
   const shuffledAnswers = useRef();
   if (!shuffledAnswers.current) {
     shuffledAnswers.current = [...answers];

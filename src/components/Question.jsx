@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Answers from "./Answers";
 import QuestionTimer from "./QuestionTimer";
-import QUESTIONS from "../questions";
 
-export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
+export default function Question({
+  index,
+  onSelectAnswer,
+  onSkipAnswer,
+  selectedQuestions,
+}) {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
     isCorrect: null,
@@ -26,7 +30,7 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     setTimeout(() => {
       setAnswer({
         selectedAnswer: answer,
-        isCorrect: QUESTIONS[index].answers[0] === answer,
+        isCorrect: selectedQuestions[index].answers[0] === answer,
       });
 
       setTimeout(() => {
@@ -49,10 +53,10 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
         onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
         mode={answerState}
       />
-      <h2>{QUESTIONS[index].text}</h2>
+      <h2>{selectedQuestions[index]?.text}</h2>
       <Answers
-        answers={QUESTIONS[index].answers}
-        selectedAnswer={answer.selectedAnswer}
+        answers={selectedQuestions[index]?.answers}
+        selectedAnswer={answer?.selectedAnswer}
         answerState={answerState}
         onSelect={handleSelectAnswer}
       />

@@ -1,14 +1,14 @@
 import quizCompletImg from "../assets/quiz-complete.png";
-import QUESTIONS from "../questions";
-export default function Summery({ userAnswers }) {
+// import QUESTIONS from "../questions";
+export default function Summery({ userAnswers, selectedQuestions }) {
   console.log("user answers ::", userAnswers);
 
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const correctAnswers = userAnswers.filter(
-    (answer, index) => answer === QUESTIONS[index].answers[0]
+    (answer, index) => answer === selectedQuestions[index].answers[0]
   );
   const incorrectAnswers = userAnswers.filter(
-    (answer, index) => answer !== QUESTIONS[index].answers[0]
+    (answer, index) => answer !== selectedQuestions[index].answers[0]
   );
 
   const skippedAnswersShare = Math.round(
@@ -22,6 +22,10 @@ export default function Summery({ userAnswers }) {
   // );
 
   const wrongAnswerShare = 100 - skippedAnswersShare - correctAnswersShare;
+
+  function handleQuizOut() {
+    window.location.reload();
+  }
 
   return (
     <>
@@ -49,7 +53,7 @@ export default function Summery({ userAnswers }) {
             let cssClass = "user-answer";
             if (answer === null) {
               cssClass += " skipped";
-            } else if (answer === QUESTIONS[index].answers[0]) {
+            } else if (answer === selectedQuestions[index].answers[0]) {
               cssClass += " correct";
             } else {
               cssClass += " wrong";
@@ -57,12 +61,22 @@ export default function Summery({ userAnswers }) {
             return (
               <li key={index}>
                 <h3>{index + 1}</h3>
-                <p className="question">{QUESTIONS[index].text}</p>
+                <p className="question">{selectedQuestions[index].text}</p>
                 <p className={cssClass}>{answer ?? "Skipped"}</p>
               </li>
             );
           })}
         </ol>
+
+        <div className=" flex justify-center">
+          <button
+            className="  rounded bg-purple-500 px-4 py-2 hover:bg-purple-800 text-white"
+            onClick={handleQuizOut}
+          >
+            {" "}
+            Go to Home page
+          </button>
+        </div>
       </div>
     </>
   );

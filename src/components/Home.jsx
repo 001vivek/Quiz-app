@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { cards } from "../questions";
+import {
+  reactQuestions,
+  nextjsQuestions,
+  javascriptQuestions,
+  nodejsQuestions,
+} from "../data/quiz-questions";
 import Modal from "./Modal";
 import Confirmation from "./Confirmation";
 import Quiz from "./Quiz";
@@ -7,6 +13,7 @@ import Header from "./Header";
 export default function Home() {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [IsQuizStarted, setIsQuizStarted] = useState(false);
+  const [selectedQuestions, setSelectedQuestions] = useState(reactQuestions);
 
   const confirmQuiz = () => {
     setIsQuizStarted(true);
@@ -16,6 +23,12 @@ export default function Home() {
   function handleCloseModal() {
     setIsModelOpen(false);
   }
+
+  function handleTakeQuiz(quiz) {
+    setIsModelOpen(true);
+    console.log("quiz name", quiz);
+  }
+  console.log("selected question parent", selectedQuestions);
   return (
     <>
       {isModelOpen ? (
@@ -24,7 +37,7 @@ export default function Home() {
         </Modal>
       ) : null}
       {IsQuizStarted ? (
-        <Quiz />
+        <Quiz selectedQuestions={selectedQuestions} />
       ) : (
         <main className=" container mx-auto">
           <Header />
@@ -43,7 +56,7 @@ export default function Home() {
                   <p className="mb-2">Questions : {card.questions}</p>
 
                   <button
-                    onClick={() => setIsModelOpen(true)}
+                    onClick={() => handleTakeQuiz(card.id)}
                     className="rounded bg-purple-500 px-4 py-2 hover:bg-purple-800"
                   >
                     Take Quiz

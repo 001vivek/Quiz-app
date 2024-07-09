@@ -73,25 +73,25 @@ export default [
 
 export const cards = [
   {
-    id: "c1",
+    id: "react_quiz",
     name: "React Quiz",
     questions: 10,
     text: "A simple quiz to test your knowledge of React Js",
   },
   {
-    id: "c2",
+    id: "javascript_quiz",
     name: "Javascript Quiz",
     questions: 10,
     text: "A simple quiz to test your knowledge of Javascript",
   },
   {
-    id: "c3",
+    id: "next_quiz",
     name: "Next Quiz",
     questions: 10,
     text: "A simple quiz to test your knowledge of Next Js",
   },
   {
-    id: "c4",
+    id: "node_quiz",
     name: "Node Quiz",
     questions: 10,
     text: "A simple quiz to test your knowledge of Node Js",

@@ -61,7 +61,9 @@ export default function Summery({ userAnswers, selectedQuestions }) {
             return (
               <li key={index}>
                 <h3>{index + 1}</h3>
-                <p className="question">{selectedQuestions[index].text}</p>
+                <p className="question font-bold">
+                  {selectedQuestions[index].text}
+                </p>
                 <p className={cssClass}>{answer ?? "Skipped"}</p>
               </li>
             );

@@ -13,7 +13,8 @@ import Header from "./Header";
 export default function Home() {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [IsQuizStarted, setIsQuizStarted] = useState(false);
-  const [selectedQuestions, setSelectedQuestions] = useState(reactQuestions);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [selectedQuizName, seSelectedQuizName] = useState("");
 
   const confirmQuiz = () => {
     setIsQuizStarted(true);
@@ -25,15 +26,35 @@ export default function Home() {
   }
 
   function handleTakeQuiz(quiz) {
+    seSelectedQuizName(quiz);
     setIsModelOpen(true);
     console.log("quiz name", quiz);
+    switch (quiz) {
+      case "react_quiz":
+        setSelectedQuestions(reactQuestions);
+        break;
+      case "javascript_quiz":
+        setSelectedQuestions(javascriptQuestions);
+        break;
+      case "next_quiz":
+        setSelectedQuestions(nextjsQuestions);
+        break;
+      case "node_quiz":
+        setSelectedQuestions(nodejsQuestions);
+        break;
+      default:
+        setSelectedQuestions([]);
+    }
   }
-  console.log("selected question parent", selectedQuestions);
   return (
     <>
       {isModelOpen ? (
         <Modal open={isModelOpen}>
-          <Confirmation onConfirm={confirmQuiz} onCancel={handleCloseModal} />
+          <Confirmation
+            quizName={selectedQuizName}
+            onConfirm={confirmQuiz}
+            onCancel={handleCloseModal}
+          />
         </Modal>
       ) : null}
       {IsQuizStarted ? (
